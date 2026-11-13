@@ -1,0 +1,40 @@
+# Rebuilds plugins.xml whenever a plugin zip is added or removed by hand
+# (for example with "Add file > Upload files" on GitHub). Releases made by a
+# plugin's own Release workflow already include an up-to-date plugins.xml, so
+# this then finds nothing to change.
+
+name: Rebuild plugins.xml
+
+on:
+  push:
+    branches: [main]
+    paths: ["**.zip", "scripts/build_plugins_xml.py"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-to-qgis-plugins
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Rebuild
+        run: python3 scripts/build_plugins_xml.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "plugins.xml is already up to date."
+          else
+            git commit -m "Rebuild plugins.xml"
+            git push
+          fi

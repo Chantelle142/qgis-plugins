@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugins>
+  <pyqgis_plugin name="Create Field Grid" version="2.0.0">
+    <description><![CDATA[Creates numbered soil sampling points by dividing each field into square grid cells of a chosen area.]]></description>
+    <about><![CDATA[Divides each field polygon into square cells of a chosen area (hectares or acres) and places one numbered sample point in each cell. The grid follows each field's edges, small edge cells are merged into a neighbour, a field never gets more points than its area allows, and the numbers stay unique across the whole farm.
+Adds "Create Field Grid" to the Processing Toolbox under Field Tools, a toolbar button, and a Plugins > Field Tools menu entry.]]></about>
+    <version>2.0.0</version>
+    <qgis_minimum_version>3.28.0</qgis_minimum_version>
+    <qgis_maximum_version>3.99.0</qgis_maximum_version>
+    <homepage><![CDATA[https://chantelle142.github.io/qgis-plugins/]]></homepage>
+    <file_name>create_field_grid.2.0.0.zip</file_name>
+    <icon>https://chantelle142.github.io/qgis-plugins/create_field_grid/icon.png</icon>
+    <author_name><![CDATA[Chantelle Strydom]]></author_name>
+    <download_url>https://chantelle142.github.io/qgis-plugins/create_field_grid/create_field_grid.2.0.0.zip</download_url>
+    <experimental>False</experimental>
+    <deprecated>False</deprecated>
+    <tracker><![CDATA[https://github.blesdmm.dns-dynamic.net/Chantelle142/create_field_grid/issues]]></tracker>
+    <repository><![CDATA[https://github.blesdmm.dns-dynamic.net/Chantelle142/create_field_grid]]></repository>
+    <tags><![CDATA[soil sampling,sampling grid,agriculture,precision farming,grid,processing]]></tags>
+    <changelog><![CDATA[2.0.0 First release as a plugin. Includes the v2 tool: point limit per field, First number, Advanced parameters, and layers with no projection treated as EPSG:4326.]]></changelog>
+  </pyqgis_plugin>
+</plugins>
